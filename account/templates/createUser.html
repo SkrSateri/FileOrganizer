@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+
+{% block content %} 
+
+    <div id="login">
+        <h1>Create User</h1>
+        <form action="." method="POST"> {% csrf_token %}
+            {{form.as_p}}
+            <input type="submit" value="Create">
+            {% if message is not null %}
+                {% if message.isMessagePositive %}
+                    <h6 id="positiveMessage">{{message.contentt}}</h6>
+                {% else %}
+                    <h6 id="negativeMessage">{{message.contentt}}</h6>
+                {% endif %}
+            {% endif %}
+        </form>
+
+    </div>
+{% endblock %}

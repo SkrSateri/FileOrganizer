@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div id={{show}}>
+        <h4>Search Results:</h4>
+        {% if resultMessage.isMessagePositive == False %}
+            <h6 id="negativeMessage">{{resultMessage.content}}</h6>
+        {% endif %}
+        <form action="." method="POST">
+            <ol>
+                {% for file in fileQuery %}
+                    <a href="{% url 'downloadFile' oid=file.id %}"><li>{{file.fileName}} - {{file.fileDescription}} - {{file.lastUploadBy}} - {{file.uploadDate}}</li></a>
+                    <hr>
+                {% endfor %}            
+            </ol>
+        </form>
+    </div>
+
+
+{% endblock %}

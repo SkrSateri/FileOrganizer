@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %} 
+
+    <div id="login">
+        <h1>Login</h1>
+        <form action="." method="POST"> {% csrf_token %}
+            {{form.as_p}}
+            {% if errorMessage is not None %}
+                <h6 id="errorMessage">{{errorMessage}}</h6>
+            {% endif %}
+            <input type="submit" value="Login">
+        </form>
+    </div>
+
+{% endblock %}

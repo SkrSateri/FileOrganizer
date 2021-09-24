@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div id = "login">
+    <h1>Search File By</h1>
+    <div id = "searchButtons">
+        <button onclick="fileNameFunchtion()" id="buttonFileName">File Name</button>
+        <button onclick="uploaderNameFunchtion()" id="buttonUploaderName">Uploader Name</button>
+        <button onclick="uploadDateFunchtion()" id="buttonUploadDate">Uploaded Date</button>
+    </div>
+    <div id = "searchByFileName">
+        <form action="." method="POST"> {% csrf_token %}
+            {{form.as_p}}
+            <input type="submit" value="Search">
+        </form>
+    </div>
+    <div id = "searchByUploaderName">
+        <form action="." method="POST">{% csrf_token %}
+            {{searchByName.as_p}}
+            <input type="submit" value="Search">
+        </form>
+    </div>
+    <div id = "searchByUploadDate">
+        <form action="." method="POST">{% csrf_token %}
+            {{searchByDate.as_p}}
+            <input type="submit" value="Search">
+        </form>
+    </div>
+</div>
+<div id={{show}}>
+        <h4>Search Results:</h4>
+        {% if resultMessage.isMessagePositive == False %}
+            <h6 id="negativeMessage">{{resultMessage.content}}</h6>
+        {% endif %}
+        <ol>
+            {% for file in fileQuery %}
+                <a href=""><li>{{file.fileName}} - {{file.fileDescription}} - {{file.lastUploadBy}} - {{file.uploadDate}}</li></a>
+                <hr>
+            {% endfor %}
+        </ol>
+</div>
+
+<script>
+    function fileNameFunchtion() {
+        var fileName = document.getElementById("searchByFileName");
+        var uploaderName = document.getElementById("searchByUploaderName");
+        var uploadDate = document.getElementById("searchByUploadDate");
+        var buttonFileName = document.getElementById("buttonFileName");
+        var buttonUploaderName = document.getElementById("buttonUploaderName");
+        var buttonUploadDate = document.getElementById("buttonUploadDate");
+        if(fileName.style.display === "none"){
+            fileName.style.display = "block";
+            uploadDate.style.display = "none";
+            uploaderName.style.display = "none";
+            buttonFileName.style.backgroundColor = "grey";
+            buttonUploadDate.style.backgroundColor = "black";
+            buttonUploaderName.style.backgroundColor = "black";
+        }
+        else{
+            fileName.style.display = "none";
+            buttonFileName.style.backgroundColor = "black";
+        }
+    }
+
+    function uploaderNameFunchtion() {
+        var fileName = document.getElementById("searchByFileName");
+        var uploaderName = document.getElementById("searchByUploaderName");
+        var uploadDate = document.getElementById("searchByUploadDate");
+        var buttonFileName = document.getElementById("buttonFileName");
+        var buttonUploaderName = document.getElementById("buttonUploaderName");
+        var buttonUploadDate = document.getElementById("buttonUploadDate");
+        if(uploaderName.style.display === "none"){
+            fileName.style.display = "none";
+            uploadDate.style.display = "none";
+            uploaderName.style.display = "block";
+            buttonFileName.style.backgroundColor = "black";
+            buttonUploadDate.style.backgroundColor = "black";
+            buttonUploaderName.style.backgroundColor = "grey";
+        }
+        else{
+            uploaderName.style.display = "none";
+            buttonUploaderName.style.backgroundColor = "black";
+        }
+    }
+
+    function uploadDateFunchtion() {
+        var fileName = document.getElementById("searchByFileName");
+        var uploaderName = document.getElementById("searchByUploaderName");
+        var uploadDate = document.getElementById("searchByUploadDate");
+        var buttonFileName = document.getElementById("buttonFileName");
+        var buttonUploaderName = document.getElementById("buttonUploaderName");
+        var buttonUploadDate = document.getElementById("buttonUploadDate");
+        if(uploadDate.style.display === "none"){
+            fileName.style.display = "none";
+            uploadDate.style.display = "block";
+            uploaderName.style.display = "none";
+            buttonFileName.style.backgroundColor = "black";
+            buttonUploadDate.style.backgroundColor = "grey";
+            buttonUploaderName.style.backgroundColor = "black";
+        }
+        else{
+            uploadDate.style.display = "none";
+            buttonUploadDate.style.backgroundColor = "black";
+        }
+    }
+</script>
+{% endblock %}

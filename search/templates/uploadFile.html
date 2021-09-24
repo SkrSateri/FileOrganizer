@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div id="login">
+    <h1>Upload File</h1>
+    <form action="." method="POST" enctype="multipart/form-data"> {% csrf_token %}
+        {{form.as_p}}
+        {% if resultMessage is not None %}
+            {% if resultMessage.isMessagePositive %}
+                <h6 id="positiveMessage">{{resultMessage.content}}</h6>
+            {% else %}
+                <h6 id="negativeMessage">{{resultMessage.content}}</h6>
+            {% endif %}
+        {% endif %}
+        <input type="submit" value="Upload">
+    </form>
+</div>
+
+{% endblock %}
