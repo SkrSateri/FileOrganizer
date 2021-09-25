@@ -51,7 +51,7 @@ def searchFile_view(request, *args, **kwargs):
     show = setShow(False)
 
     #message for show results
-    resultMessage = ResultMessage(None,"resultMessage Not Working")
+    resultMessage = ResultMessage(None,"resultMessage  somehow not Working")
 
     #evaluation of form
     #Using try to find files with provided informations from forms
