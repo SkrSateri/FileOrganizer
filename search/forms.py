@@ -1,25 +1,16 @@
 from django import forms
 from .models import File
 
-class SearchForm(forms.ModelForm):
+class searchFormByAllInfo(forms.ModelForm):
     class Meta:
         model = File
+        widgets = {
+            'uploadDate': forms.TextInput(attrs={'placeholder': 'Add date with order year-month-day'}),
+        }
         fields = [
             'fileName',
-        ]
-    
-class searchFormByUploader(forms.ModelForm):
-    class Meta:
-        model = File
-        fields = [
-            'lastUploadBy'
-        ]
-
-class searchFormByUploadDate(forms.ModelForm):
-    class Meta:
-        model = File
-        fields = [
-            'uploadDate'
+            'lastUploadBy',
+            'uploadDate',
         ]
 
 class UploadFileForm(forms.ModelForm):

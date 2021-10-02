@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div id="login">
+    <h1>Search User</h1>
+    <form action="{% url 'searchUser' %}" method="POST"> {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit">Search</button>
+    </form>
+</div>
+
+{% endblock %}

@@ -86,7 +86,7 @@ DATABASES = {
         'USER':'postgres',
         'PASSWORD': 'admin123',
         'HOST': '127.0.0.1',
-        'PORT': '49157',
+        'PORT': '49153',
     }
     
     #'default': {
@@ -143,4 +143,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
-SESSION_COOKIE_AGE = 60 * 20
+SESSION_COOKIE_AGE = 60 * 60

@@ -14,10 +14,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-from account.views import createUser_view, login_view, sessionLogout_view
+from django.urls import path, register_converter
+from account.views import createUser_view, login_view, sessionLogout_view, searchUser_view, deleteUser_view
 from home.views import home_view
-from search.views import searchFile_view, uploadFile_view, downloadFile_view
+from search.views import searchFile_view, uploadFile_view, downloadFile_view, deleteFileResults_view
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,5 +28,9 @@ urlpatterns = [
     path('searchFile/', searchFile_view, name = 'searchFile'),
     path('uploadFile/', uploadFile_view, name = 'uploadFile'),
     path('logout/', sessionLogout_view, name = 'logout'),
+    path('deleteFileResults/<int:otdid>', deleteFileResults_view, name = 'deleteFileResults'),
     path('<int:oid>', downloadFile_view, name = 'downloadFile'),
+    path('searchUser/', searchUser_view, name = 'searchUser'),
+    path('deleteUser/<int:uid>/', deleteUser_view, name = 'deleteUser')
 ]
+ 

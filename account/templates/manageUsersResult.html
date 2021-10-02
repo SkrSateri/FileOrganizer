@@ -1,0 +1,28 @@
+{% extends 'base.html'%}
+
+{% block content %}
+<div id=searchResultsDivision>
+    <h4>Search Results:</h4>
+    {% if resultMessage.isMessagePositive == False %}
+        <h6 id="negativeMessage">{{resultMessage.content}}</h6>
+    {% endif %}
+    <table id="searchResultsTable">
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Username </th>
+        <th>Is Admin</th>
+        <th></th>
+        {% for user in userQuery %}
+        <tr>
+            <td>{{user.name}}</td>
+            <td>{{user.surname}}</td>
+            <td>{{user.username}}</td>
+            <td>{{user.isAdmin}}</td>
+            <td><a href="{% url 'deleteUser' uid=user.id %}"><button id="deleteButton">Delete</button></a></td>
+
+        </tr>
+        {% endfor %}            
+    </table>
+</div>
+
+{% endblock %}

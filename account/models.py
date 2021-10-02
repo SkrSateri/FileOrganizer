@@ -8,3 +8,4 @@ class User(models.Model):
     name = models.CharField(max_length = 20)
     surname = models.CharField (max_length = 20)
     isAdmin = models.BooleanField(default = False)
+    isActive = models.BooleanField(default = False)

@@ -1,21 +1,53 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<div id={{show}}>
+    <h4>Search Results:</h4>
+    {% if resultMessage.isMessagePositive == False %}
+        <h6 id="negativeMessage">{{resultMessage.content}}</h6>
+    {% endif %}
+    <table id="searchResultsTable">
+        <th>File Name</th>
+        <th>Description</th>
+        <th>Uploaders Name</th>
+        <th>Upload Date</th>
+        <th></th>
+        <th></th>
+        {% for file in fileQuery %}
+        <tr>
+            <td>{{file.fileName}}</td>
+            <td>{{file.fileDescription}}</td>
+            <td>{{file.lastUploadBy}}</td>
+            <td>{{file.uploadDate}}</td>
+            <td><a href="{% url 'downloadFile' oid=file.id %}"><button id="downloadButton">Download</button></a></td>
+            <td><a href="{% url 'deleteFileResults' otdid=file.id %}" onclick="return confirm('Are you sure about deleting file {{file.fileName}} ?')"><button id="deleteButton">Delete</button></a></td>
+        </tr>
+        {% endfor %}            
+    </table>
+</div>
 
-    <div id={{show}}>
-        <h4>Search Results:</h4>
-        {% if resultMessage.isMessagePositive == False %}
-            <h6 id="negativeMessage">{{resultMessage.content}}</h6>
-        {% endif %}
-        <form action="." method="POST">
-            <ol>
-                {% for file in fileQuery %}
-                    <a href="{% url 'downloadFile' oid=file.id %}"><li>{{file.fileName}} - {{file.fileDescription}} - {{file.lastUploadBy}} - {{file.uploadDate}}</li></a>
-                    <hr>
-                {% endfor %}            
-            </ol>
-        </form>
+<!-- <div id="wrapScreen">
+    <div id="deleteConfirm">
+        <p>Are you sure about deleting this file ?</p>
+        <br>
+        <p id="yesNo"><a id="yesLink" href="https://www.youtube.com/watch?v=zPcvAwp71uA">Yes</a> <a href="https://www.youtube.com/watch?v=zPcvAwp71uA">No</a></p>
     </div>
+</div>
 
-
+<script>
+    function deleteConfirmDivHide(id) {
+        var wrapScreen = document.getElementById(id);
+        var yesButton = document.getElementById("yesLink")
+        
+        if (wrapScreen.style.display === "none"){
+            wrapScreen.style.display = "block"
+        }
+        else{
+            wrapScreen.style.display = "none"
+        }
+        if (yesButton){
+            wrapScreen.style.display = "none"
+        }
+    }
+</script> -->
 {% endblock %}

@@ -57,6 +57,12 @@
                 width: 32%;
                 padding: 15px 0px;
             }
+            #deleteButton{
+                color: white;
+                background-color: black;
+                padding: 10px 10px;
+                border: none;
+            }
             div#searchByUploaderName{
                 display: none;
             }
@@ -107,12 +113,62 @@
                 left: 50%;
                 margin-top: 5%;
                 position: absolute;
-                width: max-content;
+                width: 50%;
                 transform: translate(-50%);
+            }
+            #searchResultsTable{
+                text-align: center;
+                width: 100%;
+                border: 1px solid black;
+                border-collapse: collapse;
+            }
+            #searchResultsTable th{
+                border: 1px solid black;
+            }
+            #searchResultsTable td{
+                border: 1px solid black;
+            }
+            #downloadButton{
+                color: white;
+                background-color: black;
+                padding: 10px 10px;
+                border: none;
+            }
+            #wrapScreen{
+                background-size: cover;
+                background-color: grey;
+                min-height: 100%;
+                min-width: 100%;
+                position: absolute;
+                z-index: 19999;
+                opacity: 0.5;
+                display: none;
+            }
+            #deleteConfirm{
+                border-radius: 5px;
+                background-color: white;
+                left: 50%;
+                top: 50%;
+                position: absolute;
+                width: 30%;
+                transform: translate(-50%,-50%);
+            }
+            #deleteConfirm a{
+                text-decoration: none;
+                text-align: center;
+                padding-left: 15px;
+                padding-right: 15px;
+                font-size: 20px;
+            }
+            #deleteConfirm a:hover{
+                border-bottom: 1px solid black;
+                font-size: 50px;
+            }
+            #deleteConfirm p{
+                text-align: center;
             }
             #searchResultsDivision li{
                 padding-top: 20px;
-
             }
             #searchResultsDivision hr{
                 width: 99.6%;
@@ -161,6 +217,14 @@
             #navBar a:hover:not(.active) {
                 background-color: #111;
             }
+            #navBarName{
+                float: left;
+                display: block;
+                color: white;
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+            }
             #logoutBar {
                 float: right;
             }
@@ -172,7 +236,7 @@
             
             <ul>
                 <li><a href="{% url 'home' %}">Home</a></li>
-                <li id="logoutBar"><a href="">{{username}}</a><a href="{% url 'logout' %}">Log Out</a></li> 
+                <li id="logoutBar"><div id="navBarName">{{username}}</div><a href="{% url 'logout' %}">Log Out</a></li> 
             </ul>
         
         </div>

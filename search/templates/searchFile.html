@@ -5,43 +5,16 @@
 <div id = "login">
     <h1>Search File By</h1>
     <div id = "searchButtons">
-        <button onclick="fileNameFunchtion()" id="buttonFileName">File Name</button>
-        <button onclick="uploaderNameFunchtion()" id="buttonUploaderName">Uploader Name</button>
-        <button onclick="uploadDateFunchtion()" id="buttonUploadDate">Uploaded Date</button>
-    </div>
-    <div id = "searchByFileName">
         <form action="." method="POST"> {% csrf_token %}
             {{form.as_p}}
-            <input type="submit" value="Search">
-        </form>
-    </div>
-    <div id = "searchByUploaderName">
-        <form action="." method="POST">{% csrf_token %}
             {{searchByName.as_p}}
-            <input type="submit" value="Search">
-        </form>
-    </div>
-    <div id = "searchByUploadDate">
-        <form action="." method="POST">{% csrf_token %}
             {{searchByDate.as_p}}
-            <input type="submit" value="Search">
+            <button type="submit" style="float: right;">Search</button>
         </form>
     </div>
-</div>
-<div id={{show}}>
-        <h4>Search Results:</h4>
-        {% if resultMessage.isMessagePositive == False %}
-            <h6 id="negativeMessage">{{resultMessage.content}}</h6>
-        {% endif %}
-        <ol>
-            {% for file in fileQuery %}
-                <a href=""><li>{{file.fileName}} - {{file.fileDescription}} - {{file.lastUploadBy}} - {{file.uploadDate}}</li></a>
-                <hr>
-            {% endfor %}
-        </ol>
 </div>
 
-<script>
+<!-- <script>
     function fileNameFunchtion() {
         var fileName = document.getElementById("searchByFileName");
         var uploaderName = document.getElementById("searchByUploaderName");
@@ -103,6 +76,6 @@
             uploadDate.style.display = "none";
             buttonUploadDate.style.backgroundColor = "black";
         }
-    }
+    } -->
 </script>
 {% endblock %}
